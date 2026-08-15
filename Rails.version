@@ -1,0 +1,59 @@
+
+
+ ██████╗  ████████╗   ██████╗   ██████╗   ███████╗         ██████╗  ██╗       ██╗  
+██╔════╝  ╚══██╔══╝  ██╔═══██╗  ██╔══██╗  ██╔════╝        ██╔════╝  ██║       ██║  
+╚█████╗      ██║     ██║   ██║  ██████╔╝  █████╗          ██║       ██║       ██║  
+ ╚═══██╗     ██║     ██║   ██║  ██╔══██╗  ██╔══╝          ██║       ██║       ██║  
+██████╔╝     ██║     ╚██████╔╝  ██║  ██║  ███████╗        ╚██████╗  ███████╗  ██║  
+╚═════╝      ╚═╝      ╚═════╝   ╚═╝  ╚═╝  ╚══════╝         ╚═════╝  ╚══════╝  ╚═╝  
+
+v22606.1401.13.0 - Preview
+
+Usage: store <command> [options]
+       store --help
+
+Use 'store <command> --help' to get detailed help for any command.
+
+Discovery Commands:
+┌──────────────┬──────────────────────────────────────────┐
+│ command      │ description                              │
+├──────────────┼──────────────────────────────────────────┤
+│ addons       │ List add-ons for a game                  │
+│ browse-apps  │ Browse ranked app lists                  │
+│ browse-games │ Browse ranked game lists                 │
+│ extension    │ Find apps that open specific file types  │
+│ protocol     │ Find apps that handle custom URL schemes │
+│ publisher    │ Find products from a publisher           │
+│ search       │ Search for apps and games                │
+│ show         │ Show product details and ratings         │
+│ similar      │ Find similar products                    │
+└──────────────┴──────────────────────────────────────────┘
+
+Operations Commands:
+┌───────────┬─────────────────────────────────────────────┐
+│ command   │ description                                 │
+├───────────┼─────────────────────────────────────────────┤
+│ install   │ Install an app from the Store               │
+│ installed │ List all installed apps                     │
+│ update    │ Check updates for a specific app            │
+│ updates   │ Check for updates across all installed apps │
+└───────────┴─────────────────────────────────────────────┘
+
+Helper Commands:
+┌─────────────────┬─────────────────────────────────┐
+│ command         │ description                     │
+├─────────────────┼─────────────────────────────────┤
+│ app-categories  │ List app categories             │
+│ game-categories │ List game categories            │
+│ muid            │ Get the Store device identifier │
+└─────────────────┴─────────────────────────────────┘
+
+Examples:
+  store search "Microsoft Teams"
+  store show "Visual Studio Code"
+  store browse-apps top-free --category productivity
+  store browse-games top-paid --only-game-pass
+  store similar firefox
+  store updates
+  store install whatsapp
+
