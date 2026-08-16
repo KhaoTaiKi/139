@@ -1,0 +1,37 @@
+<%# 1. Prepend new task to the task list %>
+<%= turbo_stream.prepend "tasks_list" do %>
+  <%= render partial: "tasks/task", locals: { task: @task } %>
+<% end %>
+
+<%# 2. Remove empty state message if it was shown %>
+<%= turbo_stream.remove "empty_tasks_state" %>
+
+<%# 3. Visual UI Feedback Toast with Auto-Dismiss Timer %>
+<% toast_id = "toast_#{SecureRandom.hex(4)}" %>
+<%= turbo_stream.prepend "flash_toast_container" do %>
+  <div id="<%= toast_id %>" class="animate-toast flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/30 text-emerald-200 text-xs shadow-xl backdrop-blur-md mb-2.5 transition-all">
+    <div class="flex items-center gap-2">
+      <span class="p-1 rounded-md bg-emerald-500/20 text-emerald-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <span>Created task <strong>"<%= @task.title %>"</strong></span>
+    </div>
+    <button onclick="dismissToast('<%= toast_id %>')" class="text-emerald-400 hover:text-emerald-200 p-0.5 rounded cursor-pointer font-bold text-sm leading-none">&times;</button>
+  </div>
+
+  <script>
+    setTimeout(function() {
+      if (typeof dismissToast === 'function') {
+        dismissToast('<%= toast_id %>');
+      }
+    }, 3500);
+  </script>
+<% end %>
+
+<%# 4. Update sidebar task counts %>
+<%= turbo_stream.replace "task_counters" do %>
+  <%= render "tasks/task_counters" %>
+<% end %>
+
+<%# 5. Reset and close the new task form container %>
+<%= turbo_stream.update "new_task_form_container", "" %>

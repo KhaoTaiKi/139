@@ -1,10 +1,14 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * ==========================================================================
+ * 🚀 Doearly Application Stylesheet Manifest
+ * ==========================================================================
+ * Organized into modular CSS architecture:
+ * 1. Base (Design tokens, reset, typography, selection)
+ * 2. Components (Cards, glows, navigations)
+ * 3. Animations (Keyframes, fade-ins, micro-interactions)
  */
+
+@import "base.css";
+@import "components/cards.css";
+@import "components/glows.css";
+@import "components/animations.css";

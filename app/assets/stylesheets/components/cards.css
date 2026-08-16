@@ -1,0 +1,20 @@
+/* --------------------------------------------------------------------------
+   🃏 Component: Glass Cards & Glass Navbars
+   -------------------------------------------------------------------------- */
+.glass-nav {
+  background: rgba(11, 11, 12, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card {
+  background: var(--surface-card, #161618);
+  border: 1px solid var(--border-subtle, #27272A);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--border-light, #3F3F46);
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.7), 0 0 15px -3px rgba(249, 115, 22, 0.08);
+}

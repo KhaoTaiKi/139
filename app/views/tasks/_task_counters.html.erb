@@ -1,0 +1,23 @@
+<%# ⚡ TURBO FRAME: Task Counters & Sidebar Metrics %>
+<%= turbo_frame_tag "task_counters" do %>
+  <% all_count = Task.count %>
+  <% active_count = Task.active.count %>
+  <% completed_count = Task.completed.count %>
+
+  <div class="space-y-1 text-xs text-zinc-400">
+    <%= link_to tasks_path, class: "flex items-center gap-2 px-2 py-1.5 rounded-md #{params[:filter].blank? ? 'bg-zinc-800 text-white font-medium' : 'hover:bg-zinc-800/50 hover:text-zinc-200'} transition-colors", data: { turbo_frame: "tasks_list_frame" } do %>
+      <i data-lucide="inbox" class="w-3.5 h-3.5 text-orange-400"></i> All Tasks
+      <span class="ml-auto text-[10px] bg-zinc-700 px-1.5 py-0.2 rounded font-mono"><%= all_count %></span>
+    <% end %>
+
+    <%= link_to tasks_path(filter: "active"), class: "flex items-center gap-2 px-2 py-1.5 rounded-md #{params[:filter] == 'active' ? 'bg-zinc-800 text-white font-medium' : 'hover:bg-zinc-800/50 hover:text-zinc-200'} transition-colors", data: { turbo_frame: "tasks_list_frame" } do %>
+      <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-400"></i> Active Tasks
+      <span class="ml-auto text-[10px] text-amber-400 font-mono"><%= active_count %></span>
+    <% end %>
+
+    <%= link_to tasks_path(filter: "completed"), class: "flex items-center gap-2 px-2 py-1.5 rounded-md #{params[:filter] == 'completed' ? 'bg-zinc-800 text-white font-medium' : 'hover:bg-zinc-800/50 hover:text-zinc-200'} transition-colors", data: { turbo_frame: "tasks_list_frame" } do %>
+      <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-400"></i> Completed
+      <span class="ml-auto text-[10px] text-emerald-400 font-mono"><%= completed_count %></span>
+    <% end %>
+  </div>
+<% end %>

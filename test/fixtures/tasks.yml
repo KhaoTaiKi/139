@@ -1,9 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+first_task:
+  title: "Review Phase 1 Rails Hotwire Architecture Slide Deck"
+  completed: true
 
-one:
-  title: MyString
+second_task:
+  title: "Implement Turbo Frames for Scoped Task Item Updates"
   completed: false
 
-two:
-  title: MyString
-  completed: false
+completed_task:
+  title: "Deploy Production SQLite3 & Propshaft Asset Pipeline"
+  completed: true

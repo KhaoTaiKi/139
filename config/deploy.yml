@@ -1,13 +1,13 @@
 # Name of your application. Used to uniquely configure containers.
-service: smoke
+service: tasks
 
 # Name of the container image (use your-user/app-name on external registries).
-image: smoke
+image: tasks
 
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 192.168.0.1.1
   # job:
   #   hosts:
   #     - 192.168.0.1

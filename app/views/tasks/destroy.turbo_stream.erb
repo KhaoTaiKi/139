@@ -1,0 +1,43 @@
+<%# 1. Remove the deleted task from DOM %>
+<%= turbo_stream.remove dom_id(@task) %>
+
+<%# 2. Close the Delete Confirmation Modal %>
+<%= turbo_stream.update "modal", "" %>
+
+<%# 3. If no tasks left, render the clean empty state with F5 hint %>
+<% if @tasks.blank? || @tasks.empty? %>
+  <%= turbo_stream.update "tasks_list" do %>
+    <div id="empty_tasks_state" class="text-center py-10 px-4 rounded-xl border border-dashed border-zinc-800 text-zinc-500 animate-fadeIn">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mx-auto mb-2 text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <p class="text-xs font-semibold text-zinc-300">All tasks cleared</p>
+      <p class="text-[11px] text-zinc-500 mt-1">Press <strong class="text-orange-400 font-mono">F5 (Refresh)</strong> to restore default starter tasks, or click <strong class="text-white">+ New Task</strong>.</p>
+    </div>
+  <% end %>
+<% end %>
+
+<%# 4. Visual UI Feedback Toast with Auto-Dismiss Timer %>
+<% toast_id = "toast_#{SecureRandom.hex(4)}" %>
+<%= turbo_stream.prepend "flash_toast_container" do %>
+  <div id="<%= toast_id %>" class="animate-toast flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl bg-red-950/70 border border-red-500/30 text-red-200 text-xs shadow-xl backdrop-blur-md mb-2.5 transition-all">
+    <div class="flex items-center gap-2">
+      <span class="p-1 rounded-md bg-red-500/20 text-red-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+      </span>
+      <span>Deleted <strong>"<%= @deleted_title || @task.title %>"</strong> from SQLite database</span>
+    </div>
+    <button onclick="dismissToast('<%= toast_id %>')" class="text-red-400 hover:text-red-200 p-0.5 rounded cursor-pointer font-bold text-sm leading-none">&times;</button>
+  </div>
+
+  <script>
+    setTimeout(function() {
+      if (typeof dismissToast === 'function') {
+        dismissToast('<%= toast_id %>');
+      }
+    }, 3500);
+  </script>
+<% end %>
+
+<%# 5. Update sidebar task counts %>
+<%= turbo_stream.replace "task_counters" do %>
+  <%= render "tasks/task_counters" %>
+<% end %>

@@ -1,0 +1,15 @@
+<%# ⚡ TURBO FRAME: Main Active Queue Tasks List Container %>
+<%= turbo_frame_tag "tasks_list_frame" do %>
+  <div id="tasks_list" class="space-y-2 py-3">
+    <% if @tasks.present? && @tasks.any? %>
+      <%= render partial: "tasks/task", collection: @tasks, as: :task %>
+    <% else %>
+      <!-- Clean Real Empty State -->
+      <div id="empty_tasks_state" class="text-center py-10 px-4 rounded-xl border border-dashed border-zinc-800 text-zinc-500">
+        <i data-lucide="check-circle" class="w-8 h-8 mx-auto mb-2 text-zinc-600"></i>
+        <p class="text-xs font-medium text-zinc-400">No tasks in this view</p>
+        <p class="text-[11px] text-zinc-600 mt-1">Click "+ New Task" above to add a real task to the database.</p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
